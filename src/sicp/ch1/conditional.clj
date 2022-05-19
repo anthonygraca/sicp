@@ -1,4 +1,5 @@
-(ns sicp.ch1.conditional)
+(ns sicp.ch1.conditional
+  (:refer-clojure :exclude (abs)))
 
 (defn abs [x]
   (cond
