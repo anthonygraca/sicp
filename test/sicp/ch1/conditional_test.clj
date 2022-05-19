@@ -10,3 +10,9 @@
 
 (deftest test-abs-negative
   (is (= 1 (sicp/abs -1))))
+
+(deftest test-if
+  (is (= 2 (sicp/if-abs 2))))
+
+(deftest test-if-zero
+  (is (= 0 (sicp/if-abs 0))))
