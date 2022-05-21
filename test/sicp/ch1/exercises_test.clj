@@ -52,3 +52,16 @@
                   (< a b) b
                   :else -1)
             (+ a 1)))))
+
+;; Exercise 1.2
+;; Translate to prefix: (5 + 4 + (2 - (3 - (6 + 4/5)))) / 3(6 - 2)(2 - 7)
+(deftest test-infix-to-prefix
+  (is (= (/ 37 -150) infix-to-prefix)))
+
+;; Exercise 1.3
+;; Define a procedure that takes three numbers as arguments and
+;; returns the sum of of the squares of the two larger numbers
+(deftest test-sum-of-squares-of-two-larger-numbers
+  (is (= (+ 16 25)
+         (sum-of-squares-of-two-larger-numbers 3 4 5))))
+
