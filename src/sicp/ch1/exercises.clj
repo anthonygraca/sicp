@@ -1,5 +1,6 @@
 (ns sicp.ch1.exercises
-  (:require [sicp.ch1.square :refer :all]))
+  (:use sicp.ch1.square)
+  (:refer-clojure :exclude (test)))
 
 ;; Exercise 1.1
 (def a 3)
@@ -40,3 +41,19 @@
 ;;                                (- 1 -2) => 3
 (defn a-plus-abs-b [a b]
   ((if (> b 0) + -) a b))
+
+;; Exercise 1.5
+;; Answer: In Applicative Order, the test will expand so that the
+;;         arguments evaluate first
+;; (test 0 (p)) => infinite-loop in evaluating p forever
+;; In Normal Order, the test will expand everything first before
+;; evaluating so that
+;; (test 0 (p)) => (if (= 0 0) 0 (p)) => 0
+(defn p [] (p))
+
+(defn test [x y]
+  (if (= x 0)
+    0
+    y))
+;; (test 0 (p))
+

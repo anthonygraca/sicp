@@ -1,6 +1,7 @@
 (ns sicp.ch1.exercises-test
-  (:require [sicp.ch1.exercises :refer :all]
-            [clojure.test :refer :all]))
+  (:use sicp.ch1.exercises)
+  (:require [clojure.test :refer :all])
+  (:refer-clojure :exclude (test)))
 
 ;; Exercise 1.1
 (deftest test-expression-result-1
