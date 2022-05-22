@@ -1,5 +1,5 @@
 (ns sicp.ch1.exercises
-  (:use sicp.ch1.square)
+  (:use sicp.ch1.square sicp.ch1.newtons-method)
   (:refer-clojure :exclude (test)))
 
 ;; Exercise 1.1
@@ -57,3 +57,53 @@
     y))
 ;; (test 0 (p))
 
+;; Exercise 1.6
+;; Answer: Trying to use new-sqrt-iter to compute square roots will
+;; lead to a stack overflow error due to how the new-sqrt-iter will
+;; be called without end. This is caused by applicative-order since
+;; all the arguments are evaluated first for the new-if function.
+;; In contrast, (if) is a special form that evaluates the predicate
+;; first then calls the appropriate clause, meaning that there is a
+;; stopping point where (if) would prevent new-sqrt-iter from being
+;; called
+(defn new-if [predicate then-clause else-clause]
+  (cond (predicate) then-clause
+        :else else-clause))
+
+(defn new-sqrt-iter [guess x]
+  (new-if (good-enough? guess x) guess
+          (new-sqrt-iter (improve guess x) x)))
+
+;; Exercise 1.7
+;; Answer good-enough? fails with small numbers because it bottoms out
+;; at 0.0315. The procedutre also fails with large numbers because
+;; the test is too sensitive and provides false negatives for actual
+;; good values.
+;; A new version of good-enough? would stop guessing if the change is
+;; a small fraction of guess.
+(defn new-good-enough? [guess x]
+  (> 0.01
+     (abs (- 1.0 (/ (square guess) x)))))
+
+;; Exercise 1.8 - cubed roots newtons method
+(declare cubed-root-iter)
+(declare cubed-good-enough?)
+(declare cubed-improve)
+(declare cube)
+
+(defn cubed-root [x]
+  (cubed-root-iter 1.0 x))
+
+(defn cubed-root-iter [guess x]
+  (if (cubed-good-enough? guess x)
+    guess
+    (cubed-root-iter (cubed-improve guess x) x)))
+
+(defn cubed-good-enough? [guess x]
+  (> 0.01
+     (abs (- 1.0 (/ (cube guess) x)))))
+
+(defn cube [x] (* x x x))
+
+(defn cubed-improve [y x]
+  (/ (+ (/ x (* y y)) (* 2 y)) 3))

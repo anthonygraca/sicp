@@ -1,6 +1,6 @@
 (ns sicp.ch1.exercises-test
-  (:use sicp.ch1.exercises)
-  (:require [clojure.test :refer :all])
+  (:use sicp.ch1.exercises sicp.ch1.newtons-method)
+  (:require [clojure.test :refer [deftest is]])
   (:refer-clojure :exclude (test)))
 
 ;; Exercise 1.1
@@ -70,3 +70,39 @@
 
 (deftest test-a-plus-abs-b-negative
   (is (= (+ 1 2) (a-plus-abs-b 1 -2))))
+
+;; Exercise 1.5 - no test
+
+;; Exercise 1.6 - no test
+
+;; Exercise 1.7
+(deftest good-enough-bottoms-out-for-small-numbers-1
+  (is (good-enough? 0.03125 0.000001)))
+
+(deftest good-enough-bottoms-out-for-small-numbers-2
+  (is (good-enough? 0.03125 0.00001)))
+
+(deftest good-enough-bottoms-out-for-small-numbers-3
+  (is (good-enough? 0.03125 0.000000009)))
+
+(deftest good-enough-fails-for-big-values-that-are-good
+  (is (not (good-enough? 46340.95 Integer/MAX_VALUE))))
+
+(deftest new-good-enough-does-not-bottom-out-for-small-numbers-1
+  (is (not (new-good-enough? 0.03125 0.000001))))
+
+(deftest new-good-enough-does-not-bottomn-out-for-small-numbers-2
+  (is (not (new-good-enough? 0.03125 0.00001))))
+
+(deftest new-good-enough-des-not-bottom-out-for-small-numbers-3
+  (is (not (new-good-enough? 0.03125 0.00000009))))
+
+(deftest new-good-enough-is-sensitive-for-small-numbers
+  (is (good-enough? 0.0003 0.00000009)))
+
+(deftest new-good-enough-passes-for-big-values-that-are-good
+  (is (new-good-enough? 46340 Integer/MAX_VALUE)))
+
+;; Exercise 1.8
+(deftest test-cubed-root
+  (is (cubed-good-enough? (cubed-root 27) 27)))
