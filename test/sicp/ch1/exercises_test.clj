@@ -155,3 +155,34 @@
 
 (deftest test-h-3
   (is (= 65536 (h-ackermann 4))))
+
+;; Exercise 1.11
+(deftest f-recursive-1
+  (is (= 2 (f-recursive 2))))
+
+(deftest f-recursive-2
+  (is (= 4 (f-recursive 3))))
+
+(deftest f-recursive-3
+  (is (= 11 (f-recursive 4))))
+
+(deftest f-recursive-4
+  (is (= 25 (f-recursive 5))))
+
+(deftest f-recursive-5
+  (is (= 59 (f-recursive 6))))
+
+(deftest f-iterative-1
+  (is (= 2 (f-iterative 2))))
+
+(deftest f-iterative-2
+  (is (= 4 (f-iterative 3))))
+
+(deftest f-iterative-3
+  (is (= 11 (f-iterative 4))))
+
+(deftest f-iterative-4
+  (is (= 25 (f-iterative 5))))
+
+(deftest f-iterative-5
+  (is (= 59 (f-iterative 6))))

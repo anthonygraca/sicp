@@ -154,3 +154,17 @@
 (defn f-ackermann [n] (A 0 n)) ;; computes to 2n
 (defn g-ackermann [n] (A 1 n)) ;; computes to 2^n
 (defn h-ackermann [n] (A 2 n)) ;; computes to (2^2)^n
+
+;; Exercise 1.11
+(defn f-recursive [n]
+  (cond (< n 3) n
+        :else (+ (f-recursive (- n 1))
+                 (* 2 (f-recursive (- n 2)))
+                 (* 3 (f-recursive (- n 3))) )))
+
+(defn f-iterative [n]
+  (letfn [(f-iter [a b c count]
+            (cond (< count 2) count
+                  (= count 2) c
+                  :else (f-iter b c (+ c (* 2 b) (* 3 a))(- count 1))))]
+    (f-iter 0 1 2 n)))
