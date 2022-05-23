@@ -106,3 +106,52 @@
 ;; Exercise 1.8
 (deftest test-cubed-root
   (is (cubed-good-enough? (cubed-root 27) 27)))
+
+;; Exercise 1.9 - no test
+
+;; Exercise 1.10
+;; (A 1 10) => 1024
+;; (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 (A 0 1) => 2^10 => 1024
+(deftest test-ackermann-function-1
+  (is (= 1024 (A 1 10))))
+
+;; (A 2 4) => 65536
+;; (A 1 (A 1 (A 1 (A 2 1)))) => (A 1 (A 1 (A 1 2))) => 2^2^2^2 => 2^16
+(deftest test-ackermann-function-2
+  (is (= 65536 (A 2 4))))
+
+;; (A 3 3)
+;; (A 2 (A 2 (A 3 1))) => (A 2 (A 2 2)) => (A 2 (A 1 (A 2 1)))
+;; => (A 2 (A 1 2) => (A 2 4) => 2^16 => 65536
+(deftest test-ackermann-function-3
+  (is (= 65536 (A 3 3))))
+
+;; 2n
+(deftest test-f-ackermann-1
+  (is (= (* 2 2) (f-ackermann 2))))
+
+(deftest test-f-ackermann-2
+  (is (= (* 2 3) (f-ackermann 3))))
+
+(deftest test-f-ackermann-3
+  (is (= (* 2 4) (f-ackermann 4))))
+
+;; 2^n
+(deftest test-g-1
+  (is (= 4 (g-ackermann 2))))
+
+(deftest test-g-2
+  (is (= 8 (g-ackermann 3))))
+
+(deftest test-g-3
+  (is (= 16 (g-ackermann 4))))
+
+;; power of powers, raise 2^2 n times.
+(deftest test-h-1
+  (is (= 4 (h-ackermann 2))))
+
+(deftest test-h-2
+  (is (= 16 (h-ackermann 3))))
+
+(deftest test-h-3
+  (is (= 65536 (h-ackermann 4))))

@@ -107,3 +107,50 @@
 
 (defn cubed-improve [y x]
   (/ (+ (/ x (* y y)) (* 2 y)) 3))
+
+;; Exercise 1.9
+(comment
+  (defn + [a b]
+    (if (= a 0)
+      b
+      (inc (+ (dec a) b))))
+  )
+;; This procedure generates a recursive process
+;; (+ 4 5)
+;; (inc (+ 3 5))
+;; (inc (inc (+ 2 5) ))
+;; (inc (inc (inc (+ 1 5))))
+;; (inc (inc (inc (inc (+ 0 5)))))
+;; (inc (inc (inc (inc 5))))
+;; (inc (inc (inc 6)))
+;; (inc (inc 7))
+;; (inc 8)
+;; 9
+
+(comment
+  (defn + [a b]
+    (if (= a 0)
+      b
+      (+ (dec a) (inc b))))
+  )
+;; This procedure generates an iterative process
+;; (+ 4 5)
+;; (+ 3 6)
+;; (+ 2 7)
+;; (+ 1 8)
+;; (+ 0 9)
+;; 9
+
+;; Exercise 1.10 - Ackermann's function
+(defn A [x y]
+  (cond (= y 0) 0
+        (= x 0) (* 2 y)
+        (= y 1) 2
+        :else (A (- x 1)
+                 (A x (- y 1)))))
+
+;; (A 3 3) => 65536
+
+(defn f-ackermann [n] (A 0 n)) ;; computes to 2n
+(defn g-ackermann [n] (A 1 n)) ;; computes to 2^n
+(defn h-ackermann [n] (A 2 n)) ;; computes to (2^2)^n
