@@ -168,3 +168,9 @@
                   (= count 2) c
                   :else (f-iter b c (+ c (* 2 b) (* 3 a))(- count 1))))]
     (f-iter 0 1 2 n)))
+
+;; Exercise 1.12 Pascal's Triangle
+(defn pascals-triangle [x y]
+  (cond (or (<= x 0) (<= y 0) (< x y)) 0
+        (or (= x 1) (= x y)) 1
+        :else (+ (pascals-triangle (- x 1) y) (pascals-triangle (- x 1) (- y 1)))))

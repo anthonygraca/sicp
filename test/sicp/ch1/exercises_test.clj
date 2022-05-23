@@ -186,3 +186,10 @@
 
 (deftest f-iterative-5
   (is (= 59 (f-iterative 6))))
+
+;; Exercise 1.12
+(deftest test-pascals-triangle-base-case
+  (is (= 1 (pascals-triangle 1 1))))
+
+(deftest test-pascals-triangle-recursive-case
+  (is (= 2 (pascals-triangle 3 2))))
