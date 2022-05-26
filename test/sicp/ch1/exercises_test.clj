@@ -193,3 +193,7 @@
 
 (deftest test-pascals-triangle-recursive-case
   (is (= 2 (pascals-triangle 3 2))))
+
+;; Exercise 1.13 - proof
+
+ 

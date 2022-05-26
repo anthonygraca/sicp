@@ -17,7 +17,7 @@
 (defn approx? [x y]
   (< (abs (- x y)) 0.001))
 
-(deftest test-sqrt
+(deftest test-sqrt-with-good-enough
   (is (good-enough? (sqrt 9) 9)))
 
 (deftest test-sqrt
